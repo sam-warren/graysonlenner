@@ -23,6 +23,7 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
+  ArrowUp,
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
@@ -39,6 +40,7 @@ export default function Home() {
   >('idle');
   const [activeSection, setActiveSection] = useState('music');
   const menuRef = useRef<HTMLDivElement>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const videoList = [
     {
@@ -97,6 +99,11 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
+      const hero = document.querySelector('section');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        setShowBackToTop(rect.bottom < 0);
+      }
       const sections = ['music', 'videos', 'about', 'contact'];
       let found = 'music';
       for (const id of sections) {
@@ -122,7 +129,33 @@ export default function Home() {
         className='w-full flex justify-center z-50 fixed top-0 left-0 bg-transparent'
       >
         <nav className='w-full flex justify-center pt-4'>
-          <ul className='flex gap-4 sm:gap-8 lg:gap-16 text-white text-xs sm:text-lg lg:text-xl font-light uppercase tracking-widest'>
+          <ul className='flex gap-4 sm:gap-8 lg:gap-16 text-white text-xs sm:text-lg lg:text-xl font-light uppercase tracking-widest items-center'>
+            <li
+              className='mr-2 flex items-center justify-center'
+              style={{ width: '2.5rem' }}
+            >
+              {showBackToTop ? (
+                <button
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                  aria-label='Back to top'
+                  className='p-1 sm:p-2 rounded-full bg-black/60 hover:bg-black text-white transition-opacity duration-300 opacity-80 hover:opacity-100 align-middle flex items-center justify-center'
+                  style={{ verticalAlign: 'middle' }}
+                >
+                  <ArrowUp className='w-4 h-4 sm:w-5 sm:h-5' />
+                </button>
+              ) : (
+                <button
+                  aria-hidden='true'
+                  tabIndex={-1}
+                  className='p-1 sm:p-2 rounded-full bg-black/60 text-white opacity-0 pointer-events-none flex items-center justify-center'
+                  style={{ verticalAlign: 'middle' }}
+                >
+                  <ArrowUp className='w-4 h-4 sm:w-5 sm:h-5' />
+                </button>
+              )}
+            </li>
             <li>
               <a
                 href='#music'
@@ -194,7 +227,7 @@ export default function Home() {
       {/* Add top padding to sections to prevent overlap with fixed menu */}
       <section
         id='music'
-        className='relative py-16 bg-white scroll-mt-24 pt-16 sm:pt-20'
+        className='relative min-h-screen py-16 bg-white scroll-mt-16 pt-16 sm:pt-20'
       >
         <Image
           src='/images/06.webp'
@@ -209,8 +242,8 @@ export default function Home() {
               <Badge variant='secondary' className='mb-4 bg-black text-white'>
                 Latest Release
               </Badge>
-              <h2 className='text-4xl font-bold text-black mb-4'>Never Left</h2>
-              <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+              <h2 className='text-4xl font-bold text-white mb-4'>Never Left</h2>
+              <p className='text-xl text-white max-w-2xl mx-auto'>
                 The newest EP featuring intimate acoustic melodies and heartfelt
                 lyrics that showcase Grayson&apos;s evolving artistry.
               </p>
@@ -218,18 +251,17 @@ export default function Home() {
 
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
               <div className='space-y-6'>
-                <div className='bg-black p-6 rounded-xl'>
-                  <iframe
-                    style={{ borderRadius: '12px' }}
-                    src='https://open.spotify.com/embed/track/7IpoOiJ9lc4sYozH1EXGxL?utm_source=generator'
-                    width='100%'
-                    height='352'
-                    frameBorder='0'
-                    allowFullScreen
-                    allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                    loading='lazy'
-                  />
-                </div>
+                <iframe
+                  className='w-full rounded-xl shadow-lg'
+                  style={{ borderRadius: '12px' }}
+                  src='https://open.spotify.com/embed/track/7IpoOiJ9lc4sYozH1EXGxL?utm_source=generator'
+                  width='100%'
+                  height='352'
+                  frameBorder='0'
+                  allowFullScreen
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                />
               </div>
 
               <div className='space-y-6'>
@@ -336,7 +368,7 @@ export default function Home() {
       {/* Videos Section (placeholder) */}
       <section
         id='videos'
-        className='relative py-32 bg-slate-50 scroll-mt-24 pt-16 sm:pt-20'
+        className='relative min-h-screen py-32 bg-slate-50 scroll-mt-16 pt-16 sm:pt-20'
       >
         <Image
           src='/images/01.webp'
@@ -391,7 +423,7 @@ export default function Home() {
       {/* About Section */}
       <section
         id='about'
-        className='relative py-16 scroll-mt-24 pt-16 sm:pt-20'
+        className='relative min-h-screen py-16 scroll-mt-16 pt-16 sm:pt-20'
       >
         <Image
           src='/images/03.webp'
@@ -400,6 +432,7 @@ export default function Home() {
           className='object-cover object-center z-0'
           priority={false}
         />
+        <div className='absolute inset-0 bg-black/20 z-10 pointer-events-none' />
         <div className='relative z-20'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
@@ -441,130 +474,124 @@ export default function Home() {
       {/* Contact Section */}
       <section
         id='contact'
-        className='py-16 bg-black text-white scroll-mt-24 pt-16 sm:pt-20'
+        className='min-h-screen py-16 bg-black text-white scroll-mt-16 pt-32 sm:pt-40'
       >
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-12'>
-            <h2 className='text-4xl font-bold mb-8'>Get In Touch</h2>
-            <p className='text-xl text-gray-300 mb-8'>
-              Connect with Grayson for collaborations, press inquiries, or just
-              to say hello.
-            </p>
-          </div>
-
-          <div className='max-w-2xl mx-auto'>
-            <Card className='bg-white border-2 border-white'>
-              <CardHeader>
-                <CardTitle className='flex items-center text-black'>
-                  <Mail className='w-5 h-5 mr-2' />
-                  Send a Message
-                </CardTitle>
-                <CardDescription className='text-gray-600'>
-                  Fill out the form below and I&apos;ll get back to you soon.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className='space-y-4'>
-                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+            <div className='max-w-2xl mx-auto'>
+              <Card className='bg-white border-2 border-white'>
+                <CardHeader>
+                  <CardTitle className='flex items-center text-black'>
+                    <Mail className='w-5 h-5 mr-2' />
+                    Send a Message
+                  </CardTitle>
+                  <CardDescription className='text-gray-600'>
+                    Fill out the form below and I&apos;ll get back to you soon.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className='space-y-4'>
+                    <div className='space-y-4'>
+                      <div className='space-y-2'>
+                        <Label htmlFor='name' className='text-black'>
+                          Name
+                        </Label>
+                        <Input
+                          id='name'
+                          name='name'
+                          type='text'
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className='border-gray-300 focus:border-black'
+                          placeholder='Your name'
+                        />
+                      </div>
+                      <div className='space-y-2'>
+                        <Label htmlFor='email' className='text-black'>
+                          Email
+                        </Label>
+                        <Input
+                          id='email'
+                          name='email'
+                          type='email'
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className='border-gray-300 focus:border-black'
+                          placeholder='your@email.com'
+                        />
+                      </div>
+                    </div>
                     <div className='space-y-2'>
-                      <Label htmlFor='name' className='text-black'>
-                        Name
+                      <Label htmlFor='subject' className='text-black'>
+                        Subject
                       </Label>
                       <Input
-                        id='name'
-                        name='name'
+                        id='subject'
+                        name='subject'
                         type='text'
-                        value={formData.name}
+                        value={formData.subject}
                         onChange={handleInputChange}
                         required
                         className='border-gray-300 focus:border-black'
-                        placeholder='Your name'
+                        placeholder="What's this about?"
                       />
                     </div>
                     <div className='space-y-2'>
-                      <Label htmlFor='email' className='text-black'>
-                        Email
+                      <Label htmlFor='message' className='text-black'>
+                        Message
                       </Label>
-                      <Input
-                        id='email'
-                        name='email'
-                        type='email'
-                        value={formData.email}
+                      <Textarea
+                        id='message'
+                        name='message'
+                        value={formData.message}
                         onChange={handleInputChange}
                         required
-                        className='border-gray-300 focus:border-black'
-                        placeholder='your@email.com'
+                        rows={5}
+                        className='border-gray-300 focus:border-black resize-none'
+                        placeholder='Tell me more...'
                       />
                     </div>
-                  </div>
-                  <div className='space-y-2'>
-                    <Label htmlFor='subject' className='text-black'>
-                      Subject
-                    </Label>
-                    <Input
-                      id='subject'
-                      name='subject'
-                      type='text'
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className='border-gray-300 focus:border-black'
-                      placeholder="What's this about?"
-                    />
-                  </div>
-                  <div className='space-y-2'>
-                    <Label htmlFor='message' className='text-black'>
-                      Message
-                    </Label>
-                    <Textarea
-                      id='message'
-                      name='message'
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className='border-gray-300 focus:border-black resize-none'
-                      placeholder='Tell me more...'
-                    />
-                  </div>
 
-                  {submitStatus === 'success' && (
-                    <div className='flex items-center p-3 bg-green-50 border border-green-200 rounded-md'>
-                      <CheckCircle className='w-5 h-5 text-green-600 mr-2' />
-                      <p className='text-green-800 text-sm'>
-                        Message sent successfully! I&apos;ll get back to you
-                        soon.
-                      </p>
-                    </div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <div className='flex items-center p-3 bg-red-50 border border-red-200 rounded-md'>
-                      <AlertCircle className='w-5 h-5 text-red-600 mr-2' />
-                      <p className='text-red-800 text-sm'>
-                        Sorry, there was an error sending your message. Please
-                        try again.
-                      </p>
-                    </div>
-                  )}
-
-                  <Button
-                    type='submit'
-                    disabled={isSubmitting}
-                    className='w-full bg-black hover:bg-gray-800 text-white'
-                  >
-                    {isSubmitting ? (
-                      'Sending...'
-                    ) : (
-                      <>
-                        <Send className='w-4 h-4 mr-2' />
-                        Send Message
-                      </>
+                    {submitStatus === 'success' && (
+                      <div className='flex items-center p-3 bg-green-50 border border-green-200 rounded-md'>
+                        <CheckCircle className='w-5 h-5 text-green-600 mr-2' />
+                        <p className='text-green-800 text-sm'>
+                          Message sent successfully! I&apos;ll get back to you
+                          soon.
+                        </p>
+                      </div>
                     )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+
+                    {submitStatus === 'error' && (
+                      <div className='flex items-center p-3 bg-red-50 border border-red-200 rounded-md'>
+                        <AlertCircle className='w-5 h-5 text-red-600 mr-2' />
+                        <p className='text-red-800 text-sm'>
+                          Sorry, there was an error sending your message. Please
+                          try again.
+                        </p>
+                      </div>
+                    )}
+
+                    <Button
+                      type='submit'
+                      disabled={isSubmitting}
+                      className='w-full bg-black hover:bg-gray-800 text-white'
+                    >
+                      {isSubmitting ? (
+                        'Sending...'
+                      ) : (
+                        <>
+                          <Send className='w-4 h-4 mr-2' />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
