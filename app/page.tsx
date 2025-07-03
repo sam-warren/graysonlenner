@@ -16,7 +16,6 @@ import { Label } from '@/components/ui/label';
 import {
   Music,
   MapPin,
-  Users,
   Mail,
   Send,
   CheckCircle,
