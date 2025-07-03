@@ -410,7 +410,7 @@ export default function Home() {
           priority={false}
         />
         <div className='relative z-20 w-full'>
-          <div className='w-full max-w-4xl aspect-video mx-auto'>
+          <div className='w-full max-w-4xl aspect-square sm:aspect-video mx-auto'>
             <iframe
               width='100%'
               height='100%'
