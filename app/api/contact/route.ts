@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_CONTACT_EMAIL) {
+    if (!process.env.RESEND_CONTACT_EMAIL) {
       return NextResponse.json(
         { error: 'Email configuration missing' },
         { status: 500 }
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to Grayson
     const notificationEmail = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
+      from: 'Grayson Lenner <noreply@graysonlennermusic.com>',
       to: process.env.RESEND_CONTACT_EMAIL,
       subject: `${subject} | ${name}`,
       html: `
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to the sender
     const confirmationEmail = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
+      from: 'Grayson Lenner <noreply@graysonlennermusic.com>',
       to: email,
       subject: `Thank you for reaching out to Grayson Lenner`,
       html: `
