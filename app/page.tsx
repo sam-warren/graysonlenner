@@ -21,6 +21,8 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
@@ -37,6 +39,18 @@ export default function Home() {
   >('idle');
   const [activeSection, setActiveSection] = useState('music');
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const videoList = [
+    {
+      src: 'https://www.youtube.com/embed/wC3N7c6lG9o',
+      title: 'Grayson Lenner - YouTube Video 1',
+    },
+    {
+      src: 'https://www.youtube.com/embed/o9xXo-mSklI',
+      title: 'Grayson Lenner - YouTube Video 2',
+    },
+  ];
+  const [currentVideo, setCurrentVideo] = useState(0);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -332,9 +346,44 @@ export default function Home() {
           priority={false}
         />
         <div className='relative z-20'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <h2 className='text-4xl font-bold mb-8'>Videos</h2>
-            <p className='text-lg text-slate-600'>Video content coming soon.</p>
+          <div className='max-w-5xl mx-auto flex items-center justify-center'>
+            <button
+              aria-label='Previous video'
+              onClick={() =>
+                setCurrentVideo((prev) =>
+                  prev === 0 ? videoList.length - 1 : prev - 1
+                )
+              }
+              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white mr-4 transition disabled:opacity-30 disabled:pointer-events-none'
+              disabled={videoList.length < 2}
+            >
+              <ChevronLeft className='w-8 h-8' />
+            </button>
+            <div className='w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 flex-shrink-0 bg-black'>
+              <iframe
+                width='100%'
+                height='100%'
+                src={videoList[currentVideo].src}
+                title={videoList[currentVideo].title}
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                allowFullScreen
+                loading='lazy'
+                className='w-full h-full'
+              />
+            </div>
+            <button
+              aria-label='Next video'
+              onClick={() =>
+                setCurrentVideo((prev) =>
+                  prev === videoList.length - 1 ? 0 : prev + 1
+                )
+              }
+              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white ml-4 transition disabled:opacity-30 disabled:pointer-events-none'
+              disabled={videoList.length < 2}
+            >
+              <ChevronRight className='w-8 h-8' />
+            </button>
           </div>
         </div>
       </section>
