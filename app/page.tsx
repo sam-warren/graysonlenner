@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -18,10 +17,7 @@ import {
   Music,
   MapPin,
   Users,
-  Star,
   Mail,
-  ExternalLink,
-  Play,
   Send,
   CheckCircle,
   AlertCircle,
@@ -129,7 +125,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                 >
                   <Music className="w-5 h-5 mr-2" />
-                  Listen to "Never Left"
+                  Listen to &ldquo;Never Left&rdquo;
                 </a>
               </Button>
             </div>
@@ -156,7 +152,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-black mb-4">Never Left</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The newest EP featuring intimate acoustic melodies and heartfelt
-              lyrics that showcase Grayson's evolving artistry.
+              lyrics that showcase Grayson&apos;s evolving artistry.
             </p>
           </div>
 
@@ -285,14 +281,14 @@ export default function Home() {
                 About Grayson
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Rooted in Victoria, BC, Grayson Lenner's music is characterized
+                Rooted in Victoria, BC, Grayson Lenner&apos;s music is characterized
                 by acoustic guitars, harmonies, rich textures, and captivating
                 melodies. His sound draws inspiration from the diverse worlds of
                 pop, folk, and alternative genres.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
                 With a uniquely authentic voice that resonates with emotion,
-                Grayson's performances create intimate connections with
+                Grayson&apos;s performances create intimate connections with
                 audiences, delivering genuine, memorable musical experiences.
               </p>
               <div className="grid grid-cols-2 gap-4 pt-4">
@@ -368,7 +364,7 @@ export default function Home() {
                   Send a Message
                 </CardTitle>
                 <CardDescription className="text-gray-600">
-                  Fill out the form below and I'll get back to you soon.
+                  Fill out the form below and I&apos;ll get back to you soon.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -417,7 +413,7 @@ export default function Home() {
                       onChange={handleInputChange}
                       required
                       className="border-gray-300 focus:border-black"
-                      placeholder="What's this about?"
+                      placeholder="What&apos;s this about?"
                     />
                   </div>
                   <div className="space-y-2">
@@ -440,7 +436,7 @@ export default function Home() {
                     <div className="flex items-center p-3 bg-green-50 border border-green-200 rounded-md">
                       <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
                       <p className="text-green-800 text-sm">
-                        Message sent successfully! I'll get back to you soon.
+                        Message sent successfully! I&apos;ll get back to you soon.
                       </p>
                     </div>
                   )}
