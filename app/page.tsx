@@ -238,128 +238,152 @@ export default function Home() {
         />
         <div className='relative z-20'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <div className='text-center mb-12'>
-              <Badge variant='secondary' className='mb-4 bg-black text-white'>
-                Latest Release
-              </Badge>
-              <h2 className='text-4xl font-bold text-white mb-4'>Never Left</h2>
-              <p className='text-xl text-white max-w-2xl mx-auto'>
-                The newest EP featuring intimate acoustic melodies and heartfelt
-                lyrics that showcase Grayson&apos;s evolving artistry.
-              </p>
-            </div>
+            <div className='text-center mb-12'></div>
 
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-              <div className='space-y-6'>
-                <iframe
-                  className='w-full rounded-xl shadow-lg'
-                  style={{ borderRadius: '12px' }}
-                  src='https://open.spotify.com/embed/track/7IpoOiJ9lc4sYozH1EXGxL?utm_source=generator'
-                  width='100%'
-                  height='352'
-                  frameBorder='0'
-                  allowFullScreen
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                />
-              </div>
-
-              <div className='space-y-6'>
-                <Card className='border-2 border-black'>
-                  <CardHeader>
-                    <CardTitle className='flex items-center'>
-                      <Music className='w-5 h-5 mr-2 text-black' />
-                      Stream Now
+            {/* Releases Grid */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
+              {[
+                {
+                  title: 'Never Left',
+                  type: 'EP',
+                  spotify:
+                    'https://open.spotify.com/album/1FJmU7xuEn15r7co3RHTGX',
+                  cover: '/images/13.webp',
+                  apple:
+                    'https://music.apple.com/us/album/never-left-ep/1783858758',
+                  bandcamp:
+                    'https://graysonlenner.bandcamp.com/album/never-left',
+                  youtube:
+                    'https://www.youtube.com/watch?v=8AVOiKrPZ6s&ab_channel=GraysonLenner',
+                },
+                {
+                  title: 'Lost Hearts',
+                  type: 'Single',
+                  spotify:
+                    'https://open.spotify.com/track/5b3DZgjWOxya5KjsRUfxzF',
+                  cover: '/images/08.webp',
+                  apple:
+                    'https://music.apple.com/za/album/lost-hearts-single/1783561822',
+                  bandcamp:
+                    'https://graysonlenner.bandcamp.com/track/lost-hearts',
+                },
+                {
+                  title: 'Never Left',
+                  type: 'Single',
+                  spotify:
+                    'https://open.spotify.com/track/4GGfa4LFM0W73zEC6v1p03',
+                  cover: '/images/11.webp',
+                  apple:
+                    'https://music.apple.com/za/album/never-left/1771987369?i=1771987370',
+                  bandcamp:
+                    'https://graysonlenner.bandcamp.com/track/never-left',
+                },
+                {
+                  title: 'Everybody',
+                  type: 'Single',
+                  spotify:
+                    'https://open.spotify.com/track/1T5KW6uHqcwzgMfXD6uWsU',
+                  cover: '/images/06.webp',
+                  bandcamp:
+                    'https://graysonlenner.bandcamp.com/track/everybody',
+                },
+                {
+                  title: 'Anymore',
+                  type: 'Single',
+                  spotify:
+                    'https://open.spotify.com/track/68eAHjXbJvhNyalpxhaJcZ',
+                  cover: '/images/01.webp', // Placeholder, update if you have a preferred image
+                  bandcamp: 'https://graysonlenner.bandcamp.com/track/anymore',
+                },
+              ].map((release, idx) => (
+                <Card
+                  key={release.title + idx}
+                  className='bg-white shadow-md flex flex-col items-center p-0 rounded-none border-0'
+                >
+                  <div className='relative w-full aspect-square overflow-hidden rounded-none'>
+                    <Image
+                      src={release.cover}
+                      alt={release.title + ' cover art'}
+                      fill
+                      className='object-cover object-center rounded-none'
+                      sizes='(max-width: 768px) 100vw, 33vw'
+                      priority={idx === 0}
+                    />
+                  </div>
+                  <CardHeader className='w-full text-center pt-4 pb-2 px-0'>
+                    <CardTitle className='text-black text-lg font-semibold'>
+                      {release.title}
                     </CardTitle>
+                    <CardDescription className='text-gray-500 text-xs uppercase tracking-widest'>
+                      {release.type}
+                    </CardDescription>
                   </CardHeader>
-                  <CardContent className='space-y-4'>
-                    <Button
-                      className='w-full bg-black hover:bg-gray-800 text-white'
-                      asChild
+                  <CardContent className='w-full flex justify-center gap-3 pb-4'>
+                    <a
+                      href={release.spotify}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='Spotify'
+                      className='inline-flex items-center justify-center rounded-full hover:bg-black/10 transition p-2'
                     >
+                      <Image
+                        src='/spotify.svg'
+                        alt='Spotify'
+                        width={28}
+                        height={28}
+                      />
+                    </a>
+                    {release.apple && (
                       <a
-                        href='https://open.spotify.com/track/7IpoOiJ9lc4sYozH1EXGxL?si=a19f6df0f6814c09'
+                        href={release.apple}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex items-center justify-center'
-                      >
-                        <Image
-                          src='/spotify.svg'
-                          alt='Spotify'
-                          width={20}
-                          height={20}
-                          className='mr-2'
-                        />
-                        Spotify
-                      </a>
-                    </Button>
-                    <Button
-                      className='w-full border-black text-black hover:bg-gray-100'
-                      variant='outline'
-                      asChild
-                    >
-                      <a
-                        href='https://music.apple.com/us/album/never-left-ep/1783858758'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='flex items-center justify-center'
+                        aria-label='Apple Music'
+                        className='inline-flex items-center justify-center rounded-full hover:bg-black/10 transition p-2'
                       >
                         <Image
                           src='/apple-music.svg'
                           alt='Apple Music'
-                          width={20}
-                          height={20}
-                          className='mr-2'
+                          width={28}
+                          height={28}
                         />
-                        Apple Music
                       </a>
-                    </Button>
-                    <Button
-                      className='w-full border-black text-black hover:bg-gray-100'
-                      variant='outline'
-                      asChild
-                    >
+                    )}
+                    {release.bandcamp && (
                       <a
-                        href='https://www.youtube.com/watch?v=8AVOiKrPZ6s&ab_channel=GraysonLenner'
+                        href={release.bandcamp}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex items-center justify-center'
+                        aria-label='Bandcamp'
+                        className='inline-flex items-center justify-center rounded-full hover:bg-black/10 transition p-2'
+                      >
+                        <Image
+                          src='/bandcamp.svg'
+                          alt='Bandcamp'
+                          width={28}
+                          height={28}
+                        />
+                      </a>
+                    )}
+                    {release.youtube && (
+                      <a
+                        href={release.youtube}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label='YouTube'
+                        className='inline-flex items-center justify-center rounded-full hover:bg-black/10 transition p-2'
                       >
                         <Image
                           src='/youtube.svg'
                           alt='YouTube'
-                          width={20}
-                          height={20}
-                          className='mr-2'
+                          width={28}
+                          height={28}
                         />
-                        YouTube Music
                       </a>
-                    </Button>
+                    )}
                   </CardContent>
                 </Card>
-
-                <Card className='border-2 border-black'>
-                  <CardHeader>
-                    <CardTitle>Track Stats</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className='space-y-2 text-sm'>
-                      <div className='flex justify-between'>
-                        <span>Monthly Listeners</span>
-                        <span className='font-semibold'>800+</span>
-                      </div>
-                      <div className='flex justify-between'>
-                        <span>Total Plays</span>
-                        <span className='font-semibold'>11,178</span>
-                      </div>
-                      <div className='flex justify-between'>
-                        <span>Genre</span>
-                        <span className='font-semibold'>Folk Pop</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+              ))}
             </div>
           </div>
         </div>
