@@ -37,7 +37,7 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<
     'idle' | 'success' | 'error'
   >('idle');
-  const [activeSection, setActiveSection] = useState('music');
+  const [activeSection, setActiveSection] = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -104,7 +104,7 @@ export default function Home() {
         setShowBackToTop(rect.bottom < 0);
       }
       const sections = ['music', 'videos', 'about', 'contact'];
-      let found = 'music';
+      let found = '';
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
