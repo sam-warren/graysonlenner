@@ -460,8 +460,8 @@ export default function Home() {
         <div className='relative z-20'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-              <div className='space-y-6'>
-                <p className='text-lg text-white leading-relaxed drop-shadow-md'>
+              <div className='space-y-6 w-full flex flex-col items-center mt-16'>
+                <p className='text-lg text-white leading-relaxed drop-shadow-md max-w-2xl mx-auto'>
                   Grayson Lenner makes music that balances heart and
                   hook—blending the warmth of folk with the energy of indie pop
                   and the depth of alternative influences. Inspired by the
@@ -477,17 +477,103 @@ export default function Home() {
                   through Alex Rainbird Music, connecting with fans far beyond
                   his hometown.
                 </p>
-                <div className='grid grid-cols-2 gap-4 pt-4'>
-                  <div className='text-center p-4 bg-black text-white rounded-lg'>
-                    <div className='text-2xl font-bold'>5+</div>
-                    <div className='text-sm text-gray-300'>Albums & EPs</div>
-                  </div>
-                  <div className='text-center p-4 bg-black text-white rounded-lg'>
-                    <div className='text-2xl font-bold'>800+</div>
-                    <div className='text-sm text-gray-300'>
-                      Monthly Listeners
+                <div className='flex justify-center space-x-6 mt-8'>
+                  <a
+                    href='https://www.instagram.com/graysonlennermusic/?hl=en'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/instagram.svg'
+                        alt='Instagram'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
                     </div>
-                  </div>
+                  </a>
+                  <a
+                    href='https://www.youtube.com/channel/UCumYzg8rjAJA3zX-Hhyr5Pg'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/youtube.svg'
+                        alt='YouTube'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href='https://www.facebook.com/graysonlennermusic'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/facebook.svg'
+                        alt='Facebook'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href='https://open.spotify.com/track/7IpoOiJ9lc4sYozH1EXGxL?si=a19f6df0f6814c09'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/spotify.svg'
+                        alt='Spotify'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href='https://graysonlenner.bandcamp.com/album/never-left'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/bandcamp.svg'
+                        alt='Bandcamp'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href='https://soundcloud.com/graysonlenner'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group'
+                  >
+                    <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
+                      <Image
+                        src='/soundcloud.svg'
+                        alt='SoundCloud'
+                        width={20}
+                        height={20}
+                        className='group-hover:scale-110 transition-transform'
+                      />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -621,104 +707,12 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className='bg-slate-900 text-white py-12'>
+      <footer className='bg-black text-white py-6'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center space-y-8'>
+          <div className='text-center space-y-4'>
             {/* Social Media Links */}
             <div>
-              <h3 className='text-xl font-semibold text-white mb-6'>
-                Follow Grayson
-              </h3>
-              <div className='flex justify-center space-x-6'>
-                <a
-                  href='https://www.instagram.com/graysonlennermusic/?hl=en'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group'
-                >
-                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
-                    <Image
-                      src='/instagram.svg'
-                      alt='Instagram'
-                      width={20}
-                      height={20}
-                      className='group-hover:scale-110 transition-transform'
-                    />
-                  </div>
-                </a>
-                <a
-                  href='https://www.youtube.com/channel/UCumYzg8rjAJA3zX-Hhyr5Pg'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group'
-                >
-                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
-                    <Image
-                      src='/youtube.svg'
-                      alt='YouTube'
-                      width={20}
-                      height={20}
-                      className='group-hover:scale-110 transition-transform'
-                    />
-                  </div>
-                </a>
-                <a
-                  href='https://www.facebook.com/graysonlennermusic'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group'
-                >
-                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
-                    <Image
-                      src='/facebook.svg'
-                      alt='Facebook'
-                      width={20}
-                      height={20}
-                      className='group-hover:scale-110 transition-transform'
-                    />
-                  </div>
-                </a>
-                <a
-                  href='https://open.spotify.com/track/7IpoOiJ9lc4sYozH1EXGxL?si=a19f6df0f6814c09'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group'
-                >
-                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
-                    <Image
-                      src='/spotify.svg'
-                      alt='Spotify'
-                      width={20}
-                      height={20}
-                      className='group-hover:scale-110 transition-transform'
-                    />
-                  </div>
-                </a>
-                <a
-                  href='https://graysonlenner.bandcamp.com/album/never-left'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group'
-                >
-                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors'>
-                    <Image
-                      src='/bandcamp.svg'
-                      alt='Bandcamp'
-                      width={20}
-                      height={20}
-                      className='group-hover:scale-110 transition-transform'
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            {/* Copyright */}
-            <div className='pt-8 border-t border-slate-700'>
-              <p className='text-slate-400'>
-                © {new Date().getFullYear()} Grayson Lenner. All rights
-                reserved. Victoria, BC, Canada.
-              </p>
+              {/* Social Links moved to About section */}
             </div>
           </div>
         </div>
