@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!process.env.RESEND_FROM_EMAIL || !process.env.CONTACT_EMAIL) {
+    if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_CONTACT_EMAIL) {
       return NextResponse.json(
         { error: 'Email configuration missing' },
         { status: 500 }
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-      replyTo: process.env.CONTACT_EMAIL,
+      replyTo: process.env.RESEND_CONTACT_EMAIL,
     });
 
     return NextResponse.json(
