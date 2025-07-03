@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     // Send email to Grayson
     const notificationEmail = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
-      to: process.env.CONTACT_EMAIL,
+      to: process.env.RESEND_CONTACT_EMAIL,
       subject: `${subject} | ${name}`,
       html: `
         <div style="font-family: sans-serif; font-size: 16px; line-height: 1.6; color: #333; max-width: 600px;">
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
             <div style="margin-top: 5px; white-space: pre-wrap;">
               ${formatMessage(message)}
             </div>
-          </div>
+          </div> 
           
           <p>I'll review your message and get back to you as soon as possible. Whether it's about collaborations, press inquiries, or just to say hello, I always love hearing from listeners and fellow music enthusiasts.</p>
           
