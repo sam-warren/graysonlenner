@@ -204,6 +204,14 @@ export default function Home() {
                 Contact
               </a>
             </li>
+            <li>
+              <a
+                href='/epk'
+                className='hover:underline'
+              >
+                EPK
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -392,7 +400,7 @@ export default function Home() {
       {/* Videos Section (placeholder) */}
       <section
         id='videos'
-        className='relative min-h-screen py-32 bg-slate-50 scroll-mt-16 pt-16 sm:pt-20'
+        className='relative min-h-screen py-12 px-4 bg-slate-50 scroll-mt-16 pt-16 sm:pt-20'
       >
         <Image
           src='/images/01.webp'
@@ -401,8 +409,21 @@ export default function Home() {
           className='object-cover object-center z-0'
           priority={false}
         />
-        <div className='relative z-20'>
-          <div className='max-w-5xl mx-auto flex items-center justify-center'>
+        <div className='relative z-20 w-full'>
+          <div className='w-full max-w-4xl aspect-video mx-auto'>
+            <iframe
+              width='100%'
+              height='100%'
+              src={videoList[currentVideo].src}
+              title={videoList[currentVideo].title}
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+              allowFullScreen
+              loading='lazy'
+              className='w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black'
+            />
+          </div>
+          <div className='flex flex-row justify-center items-center mt-4 gap-4'>
             <button
               aria-label='Previous video'
               onClick={() =>
@@ -410,24 +431,11 @@ export default function Home() {
                   prev === 0 ? videoList.length - 1 : prev - 1
                 )
               }
-              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white mr-4 transition disabled:opacity-30 disabled:pointer-events-none'
+              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition disabled:opacity-30 disabled:pointer-events-none'
               disabled={videoList.length < 2}
             >
               <ChevronLeft className='w-8 h-8' />
             </button>
-            <div className='w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 flex-shrink-0 bg-black'>
-              <iframe
-                width='100%'
-                height='100%'
-                src={videoList[currentVideo].src}
-                title={videoList[currentVideo].title}
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                allowFullScreen
-                loading='lazy'
-                className='w-full h-full'
-              />
-            </div>
             <button
               aria-label='Next video'
               onClick={() =>
@@ -435,7 +443,7 @@ export default function Home() {
                   prev === videoList.length - 1 ? 0 : prev + 1
                 )
               }
-              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white ml-4 transition disabled:opacity-30 disabled:pointer-events-none'
+              className='p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition disabled:opacity-30 disabled:pointer-events-none'
               disabled={videoList.length < 2}
             >
               <ChevronRight className='w-8 h-8' />
