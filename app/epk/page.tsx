@@ -134,9 +134,9 @@ export default function EPKPage() {
             reflection and full-band, upbeat moments that stay with you.
             <br />
             <br />
-            Based in Victoria, BC, Grayson's debut EP Never Left showcases both
-            sides of his sound: emotionally honest songwriting wrapped in rich
-            textures, catchy melodies, and dynamic arrangements. The EP has
+            Based in Victoria, BC, Grayson&apos;s debut EP Never Left showcases
+            both sides of his sound: emotionally honest songwriting wrapped in
+            rich textures, catchy melodies, and dynamic arrangements. The EP has
             reached listeners around the world through Alex Rainbird Music,
             connecting with fans far beyond his hometown.
           </div>

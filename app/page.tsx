@@ -9,13 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import {
-  Music,
-  MapPin,
   Mail,
   Send,
   CheckCircle,
@@ -469,20 +466,10 @@ export default function Home() {
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
               <div className='space-y-6 w-full flex flex-col items-center mt-16'>
                 <p className='text-lg text-white leading-relaxed drop-shadow-md max-w-2xl mx-auto'>
-                  Grayson Lenner makes music that balances heart and
-                  hook—blending the warmth of folk with the energy of indie pop
-                  and the depth of alternative influences. Inspired by the
-                  introspection of Ben Howard and the sonic layering of Bon
-                  Iver, his songs move between quiet reflection and full-band,
-                  upbeat moments that stay with you.
+                  Grayson Lenner makes music that balances heart and hook—blending the warmth of folk with the energy of indie pop and the depth of alternative influences. Inspired by the introspection of Ben Howard and the sonic layering of Bon Iver, his songs move between quiet reflection and full-band, upbeat moments that stay with you.
                   <br />
                   <br />
-                  Based in Victoria, BC, Grayson's debut EP Never Left showcases
-                  both sides of his sound: emotionally honest songwriting
-                  wrapped in rich textures, catchy melodies, and dynamic
-                  arrangements. The EP has reached listeners around the world
-                  through Alex Rainbird Music, connecting with fans far beyond
-                  his hometown.
+                  Based in Victoria, BC, Grayson&apos;s debut EP Never Left showcases both sides of his sound: emotionally honest songwriting wrapped in rich textures, catchy melodies, and dynamic arrangements. The EP has reached listeners around the world through Alex Rainbird Music, connecting with fans far beyond his hometown.
                 </p>
                 <div className='flex justify-center space-x-6 mt-8'>
                   <a
