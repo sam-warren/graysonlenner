@@ -1,8 +1,9 @@
-import { Resend } from 'resend'
+import { Resend } from 'resend';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'nodejs'
+export const runtime = 'nodejs';
 
-const formatMessage = (message) => {
+const formatMessage = (message: string) => {
   return message
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -12,44 +13,30 @@ const formatMessage = (message) => {
       '<a href="$1" style="color: #007bff; text-decoration: underline;">$1</a>',
     )
     .split('\n')
-    .join('<br>')
-}
+    .join('<br>');
+};
 
-export default async function handler(req, res) {
-  const resend = new Resend(process.env.RESEND_API_KEY)
-
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-  )
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-  )
-
-  if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
+export async function POST(request: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    const { name, email, subject, message } = req.body
+    const { name, email, subject, message } = await request.json();
 
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: 'Missing required fields' })
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
     }
 
     if (!process.env.RESEND_FROM_EMAIL || !process.env.CONTACT_EMAIL) {
-      return res.status(500).json({ error: 'Email configuration missing' })
+      return NextResponse.json(
+        { error: 'Email configuration missing' },
+        { status: 500 }
+      );
     }
 
-    // Send email to Clarke Engineering
+    // Send email to Grayson
     const notificationEmail = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.CONTACT_EMAIL,
@@ -65,7 +52,7 @@ export default async function handler(req, res) {
         </div>
       `,
       replyTo: email,
-    })
+    });
 
     // Send confirmation email to the sender
     const confirmationEmail = await resend.emails.send({
@@ -91,7 +78,7 @@ export default async function handler(req, res) {
           <p>I'll review your message and get back to you as soon as possible. Whether it's about collaborations, press inquiries, or just to say hello, I always love hearing from listeners and fellow music enthusiasts.</p>
           
           <p><strong>Want to stay connected?</strong><br>
-          Follow me on my social media channels or check out my latest music on <a href="https://open.spotify.com/artist/your-artist-id" style="color: #000; text-decoration: underline;">Spotify</a> while you wait for my response!</p>
+          Follow me on my social media channels or check out my latest music on <a href="https://open.spotify.com/track/7IpoOiJ9lc4sYozH1EXGxL?si=a19f6df0f6814c09" style="color: #000; text-decoration: underline;">Spotify</a> while you wait for my response!</p>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
             <p style="color: #666; font-size: 14px;">
@@ -103,20 +90,38 @@ export default async function handler(req, res) {
         </div>
       `,
       replyTo: process.env.CONTACT_EMAIL,
-    })
+    });
 
-    return res.status(200).json({ 
-      success: true, 
-      data: {
-        notification: notificationEmail,
-        confirmation: confirmationEmail
-      }
-    })
+    return NextResponse.json(
+      { 
+        success: true, 
+        data: {
+          notification: notificationEmail,
+          confirmation: confirmationEmail
+        }
+      },
+      { status: 200 }
+    );
+
   } catch (error) {
-    console.error('Email error:', error)
-    return res.status(500).json({
-      error: 'Error sending email',
-      details: process.env.NODE_ENV === 'development' ? error : undefined,
-    })
+    console.error('Email error:', error);
+    return NextResponse.json(
+      {
+        error: 'Error sending email',
+        details: process.env.NODE_ENV === 'development' ? error : undefined,
+      },
+      { status: 500 }
+    );
   }
 }
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  });
+} 
