@@ -219,8 +219,8 @@ export default function Home() {
         <div className='absolute inset-0 bg-black/20' />
         {/* Title bottom left */}
         <div className='absolute bottom-8 left-4 z-20 sm:bottom-16 sm:left-6'>
-          <h1 className='text-base sm:text-2xl lg:text-3xl font-thin text-white uppercase tracking-wide drop-shadow-lg'>
-            Grayson Lenner
+          <h1 className='text-base sm:text-2xl lg:text-3xl font-thin text-white uppercase tracking-[.35em] drop-shadow-lg'>
+            GRAYSON LENNER
           </h1>
         </div>
       </section>
