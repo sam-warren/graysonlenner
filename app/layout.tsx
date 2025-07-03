@@ -9,15 +9,12 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Grayson Lenner | Victoria, BC Musician | Booking & Events',
-  description:
-    "Book Grayson Lenner for your venue. Victoria, BC musician with acoustic guitars, harmonies, and captivating melodies. Latest single 'Lost Hearts' available now.",
-  keywords:
-    'Grayson Lenner, Victoria BC musician, acoustic folk pop, Lost Hearts, booking, live music, venues',
+  title: 'GRAYSON LENNER',
+  description: 'Official website of Grayson Lenner.',
+  keywords: 'Grayson Lenner, music, folk pop, indie',
   openGraph: {
-    title: 'Grayson Lenner | Victoria, BC Musician',
-    description:
-      'Book Grayson Lenner for your venue. Authentic folk-pop with 800+ monthly listeners.',
+    title: 'GRAYSON LENNER',
+    description: 'Official website of Grayson Lenner.',
     type: 'website',
   },
 };
